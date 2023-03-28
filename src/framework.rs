@@ -101,6 +101,7 @@ async fn setup<E: Example>(title: &str) -> Setup {
         builder = builder.with_no_redirection_bitmap(true);
     }
     let window = builder.build(&event_loop).unwrap();
+    window.set_fullscreen(Some(winit::window::Fullscreen::Borderless(None)));
 
     #[cfg(target_arch = "wasm32")]
     {
