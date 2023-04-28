@@ -104,6 +104,8 @@ async fn setup<E: Example>(title: &str) -> Setup {
     }
     let window = builder.build(&event_loop).unwrap();
 
+    let mut phys_size = PhysicalSize::new(512, 300);
+
     // We use the first available monitor because on my RPi
     // we get None for window.primary_monitor()
     if let Some(monitor) = window.available_monitors().next() {
@@ -115,7 +117,8 @@ async fn setup<E: Example>(title: &str) -> Setup {
             println!("{intro}: [no name]");
         }
 
-        let PhysicalSize { width, height } = monitor.size();
+        phys_size = monitor.size();
+        let PhysicalSize { width, height } = phys_size;
         print!("  Current mode: {width}x{height}");
         if let Some(m_hz) = monitor.refresh_rate_millihertz() {
             println!(" @ {}.{} Hz", m_hz / 1000, m_hz % 1000);
@@ -142,6 +145,8 @@ async fn setup<E: Example>(title: &str) -> Setup {
     }
 
     //window.set_fullscreen(Some(winit::window::Fullscreen::Borderless(None)));
+
+    window.set_inner_size(phys_size);
 
     #[cfg(target_arch = "wasm32")]
     {
