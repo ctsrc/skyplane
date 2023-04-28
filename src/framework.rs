@@ -104,7 +104,9 @@ async fn setup<E: Example>(title: &str) -> Setup {
     }
     let window = builder.build(&event_loop).unwrap();
 
-    if let Some(monitor) = window.primary_monitor() {
+    // We use the first available monitor because on my RPi
+    // we get None for window.primary_monitor()
+    if let Some(monitor) = window.available_monitors().next() {
         let intro = "Primary output";
 
         if let Some(name) = monitor.name() {
