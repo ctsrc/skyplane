@@ -94,7 +94,8 @@ async fn setup<E: Example>(title: &str) -> Setup {
     builder = builder
         .with_title(title)
         .with_inner_size(LogicalSize::new(512., 360.))
-        .with_position(PhysicalPosition::new(0, 0));
+        .with_position(PhysicalPosition::new(0, 0))
+        .with_decorations(false);
     #[cfg(windows_OFF)] // TODO
     {
         use winit::platform::windows::WindowBuilderExtWindows;
