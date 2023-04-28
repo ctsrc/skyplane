@@ -10,10 +10,6 @@ use winit::{
     event_loop::{ControlFlow, EventLoop},
 };
 
-#[cfg(test)]
-#[path = "../tests/common/mod.rs"]
-pub mod test_common;
-
 #[allow(dead_code)]
 pub fn cast_slice<T>(data: &[T]) -> &[u8] {
     use std::{mem::size_of, slice::from_raw_parts};
