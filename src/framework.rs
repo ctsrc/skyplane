@@ -5,6 +5,7 @@ use std::str::FromStr;
 use std::time::Instant;
 #[cfg(target_arch = "wasm32")]
 use web_sys::{ImageBitmapRenderingContext, OffscreenCanvas};
+use winit::dpi::{LogicalSize, PhysicalPosition, PhysicalSize};
 use winit::{
     event::{self, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
@@ -90,7 +91,10 @@ async fn setup<E: Example>(title: &str) -> Setup {
 
     let event_loop = EventLoop::new();
     let mut builder = winit::window::WindowBuilder::new();
-    builder = builder.with_title(title);
+    builder = builder
+        .with_title(title)
+        .with_inner_size(LogicalSize::new(512., 360.))
+        .with_position(PhysicalPosition::new(0, 0));
     #[cfg(windows_OFF)] // TODO
     {
         use winit::platform::windows::WindowBuilderExtWindows;
