@@ -5,7 +5,7 @@ use std::str::FromStr;
 use std::time::Instant;
 #[cfg(target_arch = "wasm32")]
 use web_sys::{ImageBitmapRenderingContext, OffscreenCanvas};
-use winit::dpi::{LogicalSize, PhysicalPosition, PhysicalSize};
+use winit::dpi::{LogicalSize, PhysicalPosition};
 use winit::{
     event::{self, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
